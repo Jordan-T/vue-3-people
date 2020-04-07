@@ -1,6 +1,8 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Dotenv = require('dotenv-webpack')
+
 
 module.exports = (env = {}) => ({
   mode: env.prod ? 'production' : 'development',
@@ -26,7 +28,7 @@ module.exports = (env = {}) => ({
         use: 'vue-loader'
       },
       {
-        test: /\.png$/,
+        test: /\.(png|jpe?g|svg)$/,
         use: {
           loader: 'url-loader',
           options: { limit: 8192 }
@@ -48,7 +50,11 @@ module.exports = (env = {}) => ({
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css'
-    })
+    }),
+    new Dotenv({path: `.env.${env.prod ? 'production' : 'development'}.local`}),
+    new Dotenv({path: `.env.${env.prod ? 'production' : 'development'}`}),
+    new Dotenv({path: '.env.local'}),
+    new Dotenv({path: '.env'}),
   ],
   devServer: {
     inline: true,

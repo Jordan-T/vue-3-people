@@ -1,32 +1,34 @@
 <template>
-  <img src="./logo.png">
-  <h1>Hello Vue 3!</h1>
-  <button @click="inc">Clicked {{ count }} times.</button>
+	<div class="App">
+		<header>
+			<AppBar />
+		</header>
+		<main>
+			<RouterView />
+		</main>
+	</div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, defineComponent } from 'vue'
+import { View, useRoute } from '@posva/vue-router-next';
+import AppBar from './components/AppBar.vue';
+import IndexRoute from './routes/index.vue';
+import PersonRoute from './routes/person.vue';
 
-export default {
+export default defineComponent({
+  name: 'App',
   setup() {
-    const count = ref(0)
-    const inc = () => {
-      count.value++
-    }
-
-    return {
-      count,
-      inc
-    }
-  }
-}
+		useRoute();
+	},
+	components: {
+		AppBar,
+		View,
+		IndexRoute,
+		PersonRoute,
+	}
+});
 </script>
 
-<style scoped>
-img {
-  width: 200px;
-}
-h1 {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
+<style src="./index.css"></style>
+<style src="./App.css"></style>

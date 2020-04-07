@@ -1,0 +1,33 @@
+.AppBar {
+  background-color: #0168AB;
+  background-image: url('./AppBar.background.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  color: white;
+  font-size: 1.2em;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.AppBar-logo {
+  height: 40px;
+}
+
+.AppBar a {
+  line-height: 1.5;
+  border: 2px solid transparent;
+}
+
+.AppBar a:hover, .AppBar a.active, .AppBar a.router-link-active {
+  border-bottom-color: white;
+}
+
+.AppBar hr {
+  width: 15px;
+  visibility: hidden;
+}
+
+.AppBar hr.grow {
+  flex-grow: 1;
+}

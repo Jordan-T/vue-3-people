@@ -2,15 +2,20 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack --env.prod"
+    "build": "webpack --env.prod",
+    "start:api": "json-server --watch db.json --port 3004"
   },
   "dependencies": {
+    "@posva/vue-router-next": "^4.0.0-alpha.0",
+    "dotenv": "^8.2.0",
     "vue": "^3.0.0-alpha.10"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0-alpha.10",
     "css-loader": "^3.4.2",
+    "dotenv-webpack": "^1.7.0",
     "file-loader": "^6.0.0",
+    "json-server": "^0.16.1",
     "mini-css-extract-plugin": "^0.9.0",
     "url-loader": "^4.0.0",
     "vue-loader": "^16.0.0-alpha.3",
