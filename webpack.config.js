@@ -2,6 +2,7 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Dotenv = require('dotenv-webpack')
+const CopyPlugin = require('copy-webpack-plugin');
 
 
 module.exports = (env = {}) => ({
@@ -10,7 +11,7 @@ module.exports = (env = {}) => ({
   entry: path.resolve(__dirname, './src/main.js'),
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/'
+    publicPath: '/'
   },
   resolve: {
     alias: {
@@ -54,13 +55,16 @@ module.exports = (env = {}) => ({
     new Dotenv({path: `.env.${env.prod ? 'production' : 'development'}.local`}),
     new Dotenv({path: `.env.${env.prod ? 'production' : 'development'}`}),
     new Dotenv({path: '.env.local'}),
-    new Dotenv({path: '.env'}),
+		new Dotenv({path: '.env'}),
+		new CopyPlugin([
+			{ from: path.resolve(__dirname, './public'), to: path.resolve(__dirname, './dist') },
+		])
   ],
   devServer: {
     inline: true,
     hot: true,
     stats: 'minimal',
-    contentBase: __dirname,
+    contentBase: path.resolve(__dirname, './public'),
     overlay: true
   }
 })
