@@ -1,9 +1,6 @@
 <template>
 	<Card>
-		<CardAvatar
-			:photoUrl="person.photo"
-			:altText="`photo of ${person.firstname}`"
-		/>
+		<CardAvatar :photoUrl="person.photo" :altText="`photo of ${person.firstname}`" />
 		<CardTitle :subTitle="person.entity">
 			<Link :to="`/person/${person.id}`">{{person.firstname}} {{person.lastname}}</Link>
 		</CardTitle>
@@ -18,43 +15,44 @@
 		</CardInfo>
 
 		<template v-if="hasEdit" #actions>
-			<a href="#" @click.prevent="onEdit">
-				edit
-			</a>
+			<a href="#" @click.prevent="onEdit">edit</a>
 		</template>
 	</Card>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-import { Link } from '@posva/vue-router-next';
-import Card from '../Card/Card.vue';
-import CardAvatar from '../Card/CardAvatar.vue';
-import CardTitle from '../Card/CardTitle.vue';
-import CardInfo from '../Card/CardInfo.vue';
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+import { Person } from "../../@types/Person";
+import { Link } from "@posva/vue-router-next";
+import Card from "../Card/Card.vue";
+import CardAvatar from "../Card/CardAvatar.vue";
+import CardTitle from "../Card/CardTitle.vue";
+import CardInfo from "../Card/CardInfo.vue";
 
 export default defineComponent({
+	name: "PersonCard",
 	components: {
 		Card,
 		CardAvatar,
 		CardTitle,
 		CardInfo,
-		Link,
+		Link
 	},
 	props: {
+		/** The current person */
 		person: {
-			type: Object,
-			required: true,
+			type: Object as PropType<Person>,
+			required: true
 		},
-		hasEdit: {
-			type: Boolean,
-			default: false,
-		},
+
+		/** If has edit action */
+		hasEdit: Boolean
 	},
 	methods: {
 		onEdit() {
-			this.$emit('edit');
-		},
-	},
+			/** When edit button clicked */
+			this.$emit("edit");
+		}
+	}
 });
 </script>

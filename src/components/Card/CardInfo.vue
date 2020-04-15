@@ -1,25 +1,33 @@
 <template>
-  <div class="card-info">
-    <i class="material-icons" :title="desc || icon">
-      {{icon}}
-    </i>
-    <span><slot /></span>
-  </div>
+	<div class="card-info">
+		<i class="material-icons" :title="desc || icon">{{icon}}</i>
+		<span>
+			<!-- @slot The main content -->
+			<slot />
+		</span>
+	</div>
 </template>
 
-<script>
-import { defineComponent } from "vue"
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
+	name: "CardInfo",
 	props: {
+		/**
+			* The icon value
+			* @see https://material.io/resources/icons/?style=baseline
+			*/
 		icon: {
 			type: String,
-			required: true,
+			required: true
 		},
+
+		/** The description of the icon */
 		desc: {
 			type: String,
-			default: '',
-		},
+			default: ""
+		}
 	}
 });
 </script>

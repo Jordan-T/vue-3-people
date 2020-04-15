@@ -8,12 +8,13 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = (env = {}) => ({
   mode: env.prod ? 'production' : 'development',
   devtool: env.prod ? 'source-map' : 'cheap-module-eval-source-map',
-  entry: path.resolve(__dirname, './src/main.js'),
+  entry: path.resolve(__dirname, './src/main.ts'),
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/'
   },
   resolve: {
+    extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
       // this isn't technically needed, since the default `vue` entry for bundlers
       // is a simple `export * from '@vue/runtime-dom`. However having this
@@ -27,6 +28,13 @@ module.exports = (env = {}) => ({
       {
         test: /\.vue$/,
         use: 'vue-loader'
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        }
       },
       {
         test: /\.(png|jpe?g|svg)$/,

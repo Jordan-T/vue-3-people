@@ -17,13 +17,13 @@
 
 <style src="./AppBar.css"></style>
 
-<script>
-import { defineComponent } from 'vue';
-import { Link } from '@posva/vue-router-next';
+<script lang="ts">
+import { defineComponent } from "vue";
+import { Link } from "@posva/vue-router-next";
 
 export default defineComponent({
 	components: {
-		Link,
+		Link
 	}
 });
 </script>
