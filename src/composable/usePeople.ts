@@ -1,4 +1,4 @@
-import { people, peopleLoading, hasPeople, fetchPeople } from '../store/people'
+import { people, peopleLoading, hasPeople, fetchPeople, peopleError } from '../store/people'
 
 export default function usePeople() {
 	if (!hasPeople.value) {
@@ -8,6 +8,7 @@ export default function usePeople() {
 	return {
 		people,
 		peopleLoading,
+		peopleError,
 		hasPeople,
 	}
 }

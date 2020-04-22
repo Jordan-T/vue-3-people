@@ -19,7 +19,7 @@
   border: 2px solid transparent;
 }
 
-.AppBar a:hover, .AppBar a.active, .AppBar a.router-link-active {
+.AppBar a:hover, .AppBar a.active {
   border-bottom-color: white;
 }
 

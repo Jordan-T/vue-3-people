@@ -1,30 +1,30 @@
 <template>
-	<Spinner v-if="people.peopleLoading" />
-	<div v-else class="card-container">
-		<template v-if="!hasFound">
-			not found :(
-		</template>
-		<PersonCard v-else-if="!isEdit" :person="person" hasEdit @edit="isEdit = true" />
-		<PersonForm v-else @cancel="isEdit = false" />
-	</div>
+	<WithPeople>
+		<div class="card-container">
+			<template v-if="!hasFound">
+				not found :(
+			</template>
+			<PersonCard v-else-if="!isEdit" :person="person" hasEdit @edit="isEdit = true" />
+			<PersonForm v-else @cancel="isEdit = false" />
+		</div>
+	</WithPeople>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject, ref, computed, Ref } from 'vue';
-import Spinner from '../components/Spinner.vue'
+import WithPeople from '../components/WithPeople.vue'
 import PersonCard from '../components/PersonCard/PersonCard.vue'
 import PersonForm from '../components/PersonForm/PersonForm.vue'
-import usePeople from '../composable/usePeople'
-import { RouteLocationNormalized } from '@posva/vue-router-next';
+import { people } from '../store/people'
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
 	setup() {
-		const route = inject('route') as Ref<RouteLocationNormalized>;
+		const route = useRoute();
 		const isEdit = ref(false);
-		const people = usePeople();
 
 		const person = computed(() => {
-			return people.people.value.find((person) => person.id === route.value.params.id);
+			return people.value.find((person) => person.id === route.params.id);
 		});
 		const hasFound = computed(() => {
 			return person.value !== undefined;
@@ -33,7 +33,7 @@ export default defineComponent({
 		return { route, isEdit, people, person, hasFound };
 	},
 	components: {
-		Spinner,
+		WithPeople,
 		PersonCard,
 		PersonForm,
 	},

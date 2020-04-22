@@ -2,7 +2,7 @@
 	<Card>
 		<CardAvatar :photoUrl="person.photo" :altText="`photo of ${person.firstname}`" />
 		<CardTitle :subTitle="person.entity">
-			<Link :to="`/person/${person.id}`">{{person.firstname}} {{person.lastname}}</Link>
+			<router-link :to="`/person/${person.id}`">{{person.firstname}} {{person.lastname}}</router-link>
 		</CardTitle>
 		<CardInfo icon="email">
 			<a :href="`mailto:${person.email}`">{{person.email}}</a>
@@ -11,7 +11,7 @@
 			<a :href="`tel:${person.phone}`">{{person.phone}}</a>
 		</CardInfo>
 		<CardInfo v-if="person.managerId" icon="supervisor_account" desc="manager">
-			<Link :to="`/person/${person.managerId}`">{{person.manager}}</Link>
+			<router-link :to="`/person/${person.managerId}`">{{person.manager}}</router-link>
 		</CardInfo>
 
 		<template v-if="hasEdit" #actions>
@@ -23,7 +23,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { Person } from "../../@types/Person";
-import { Link } from "@posva/vue-router-next";
+import { useRoute } from "vue-router";
 import Card from "../Card/Card.vue";
 import CardAvatar from "../Card/CardAvatar.vue";
 import CardTitle from "../Card/CardTitle.vue";
@@ -31,6 +31,9 @@ import CardInfo from "../Card/CardInfo.vue";
 
 export default defineComponent({
 	name: "PersonCard",
+	setup() {
+		useRoute();
+	},
 	components: {
 		Card,
 		CardAvatar,

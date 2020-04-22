@@ -4,14 +4,21 @@
 			<AppBar />
 		</header>
 		<main>
-			<RouterView />
+			<Suspense>
+				<template #default>
+					<router-view></router-view>
+				</template>
+				<template #fallback>
+					Loading...
+				</template>
+			</Suspense>
 		</main>
 	</div>
 </template>
 
 <script>
 import { ref, defineComponent } from 'vue'
-import { View, useRoute } from '@posva/vue-router-next';
+import { useRoute } from 'vue-router';
 import AppBar from './components/AppBar.vue';
 import IndexRoute from './routes/index.vue';
 import PersonRoute from './routes/person.vue';
@@ -23,7 +30,6 @@ export default defineComponent({
 	},
 	components: {
 		AppBar,
-		View,
 		IndexRoute,
 		PersonRoute,
 	}

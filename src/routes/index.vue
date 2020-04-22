@@ -1,6 +1,5 @@
 <template>
-  <Spinner v-if="people.peopleLoading" />
-  <template v-else>
+  <WithPeople>
     <div class="card-container">
       <h1 v-if="filterdPeople.length === 0 && search !== ''">Not found</h1>
       <h1 v-else-if="filterdPeople.length === 0">No person</h1>
@@ -12,22 +11,21 @@
     <div class="control-container">
       <SearchInput id="search" label="search by name" v-model:value.trim="search" />
     </div>
-  </template>
+  </WithPeople>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent, computed } from "vue";
-import Spinner from "../components/Spinner.vue";
+import WithPeople from "../components/WithPeople.vue";
 import SearchInput from "../components/SearchInput.vue";
 import PersonCard from "../components/PersonCard/PersonCard.vue";
-import usePeople from "../composable/usePeople";
+import { people } from "../store/people";
 
 export default defineComponent({
   setup() {
     const search = ref("");
-    const people = usePeople();
     const filterdPeople = computed(() => {
-      return people.people.value.filter(person => {
+      return people.value.filter(person => {
         if (search.value === "") {
           return true;
         }
@@ -37,10 +35,10 @@ export default defineComponent({
       });
     });
 
-    return { people, search, filterdPeople };
+    return { search, filterdPeople };
   },
   components: {
-    Spinner,
+    WithPeople,
     SearchInput,
     PersonCard
   }
