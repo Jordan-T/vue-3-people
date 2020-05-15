@@ -19,5 +19,6 @@ export default defineComponent({
 })
 </script>
 
-<style src="./Card.css"></style>
-
+<style lang="scss">
+@import "./Card.css";
+</style>

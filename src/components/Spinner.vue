@@ -24,4 +24,6 @@ export default defineComponent({
 })
 </script>
 
-<style src="./Spinner.css"></style>
+<style lang="scss">
+@import "./Spinner.css";
+</style>

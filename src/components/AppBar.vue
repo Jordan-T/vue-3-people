@@ -8,8 +8,6 @@
 	</nav>
 </template>
 
-<style src="./AppBar.css"></style>
-
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
@@ -21,3 +19,7 @@ export default defineComponent({
 	}
 });
 </script>
+
+<style lang="scss">
+@import "./AppBar.css";
+</style>

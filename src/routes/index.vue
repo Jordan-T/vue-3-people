@@ -1,4 +1,5 @@
 <template>
+	<h1>A person - fix for routes</h1>
   <WithPeople>
     <div class="card-container">
       <h1 v-if="filterdPeople.length === 0 && search !== ''">Not found</h1>

@@ -6,20 +6,23 @@
     "start:api": "json-server --watch db.json --port 3004"
   },
   "dependencies": {
-    "vue-router": "^4.0.0-alpha.7",
     "copy-webpack-plugin": "^5.1.1",
     "dotenv": "^8.2.0",
     "ts-loader": "^6.2.2",
     "typescript": "^3.8.3",
-    "vue": "^3.0.0-beta.3"
+    "vue": "^3.0.0-beta.3",
+    "vue-router": "^4.0.0-alpha.7"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0-beta.3",
     "css-loader": "^3.4.2",
     "dotenv-webpack": "^1.7.0",
+    "eslint-plugin-vue": "^7.0.0-alpha.2",
     "file-loader": "^6.0.0",
     "json-server": "^0.16.1",
     "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
     "url-loader": "^4.0.0",
     "vue-loader": "^16.0.0-alpha.3",
     "webpack": "^4.42.1",

@@ -3,16 +3,16 @@
 		<!-- @slot The error slot-->
 		<slot name="error" :error="error">{{ error }}</slot>
 	</div>
-	<template v-else-if="loading">
+	<div v-else-if="loading">
 		<!-- @slot The loading slot-->
 		<slot name="fallback">
 			<Spinner />
 		</slot>
-	</template>
-	<template v-else>
+	</div>
+	<div v-else>
 		<!-- @slot The main slot-->
 		<slot :value="value" />
-	</template>
+	</div>
 </template>
 
 <script lang="ts">

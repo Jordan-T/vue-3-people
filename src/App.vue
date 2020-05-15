@@ -36,5 +36,7 @@ export default defineComponent({
 });
 </script>
 
-<style src="./index.css"></style>
-<style src="./App.css"></style>
+<style lang="scss">
+@import "./index.css";
+@import "./App.css";
+</style>

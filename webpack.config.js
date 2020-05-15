@@ -44,13 +44,14 @@ module.exports = (env = {}) => ({
         }
       },
       {
-        test: /\.css$/,
+        test: /\.s?(c|a)ss$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: { hmr: !env.prod }
           },
-          'css-loader'
+          'css-loader',
+          'sass-loader'
         ]
       }
     ]

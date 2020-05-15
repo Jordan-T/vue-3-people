@@ -46,4 +46,6 @@ export default defineComponent({
 });
 </script>
 
-<style src="./SearchInput.css"></style>
+<style lang="scss">
+	@import "./SearchInput.css"
+</style>

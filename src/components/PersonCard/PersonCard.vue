@@ -39,7 +39,6 @@ export default defineComponent({
 		CardAvatar,
 		CardTitle,
 		CardInfo,
-		Link
 	},
 	props: {
 		/** The current person */

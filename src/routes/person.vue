@@ -1,4 +1,5 @@
 <template>
+	<h1>List of person - fix for routes</h1>
 	<WithPeople>
 		<div class="card-container">
 			<template v-if="!hasFound">
